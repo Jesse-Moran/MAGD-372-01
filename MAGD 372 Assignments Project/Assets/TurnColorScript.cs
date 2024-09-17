@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TurnColorScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+        EventManager.OnClicked += TurnColor;
+    }
+    
+    void OnDisable()
+    {
+        EventManager.OnClicked -= TurnColor;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void TurnColor()
     {
-        
+        Color col = new Color(Random.value, Random.value, Random.value);
+        GetComponent<Renderer>().material.color = col;
     }
 }
